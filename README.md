@@ -1,2 +1,2 @@
 # WebApp
-Web Application for use in each annual California Girls State Program
+Web Application created for the California Girls State Program (https://www.cagirlsstate.org/)
