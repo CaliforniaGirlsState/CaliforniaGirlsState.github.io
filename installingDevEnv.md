@@ -18,4 +18,4 @@ npm install -g ionic
 ```
 ionic 
 ```
-+ and we should get the help screen telling about all the various options. Ionic is now installed and ready to be use :+1: :smiley:.
++ and we should get the help screen telling about all the various options. Ionic is now installed and ready to be use :+1: :smiley: 
