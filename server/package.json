@@ -1,0 +1,14 @@
+{
+  "name": "calgirlstate",
+  "version": "1.0.0",
+  "description": "Web App tool used to inform and teach calgirlstate students and assist calgirlstate instructors to conduct mock votes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
