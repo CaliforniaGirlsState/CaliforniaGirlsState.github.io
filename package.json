@@ -1,14 +1,21 @@
 {
-  "name": "calgirlstate",
+  "name": "calgirlstate_server",
   "version": "1.0.0",
   "description": "Web App tool used to inform and teach calgirlstate students and assist calgirlstate instructors to conduct mock votes",
   "main": "index.js",
+  "private": true,
   "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Kabin Nam",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "concurrently": "^3.5.1",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.4"
   }
 }
