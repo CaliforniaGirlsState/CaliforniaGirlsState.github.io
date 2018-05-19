@@ -17,19 +17,8 @@ function isAuthenticated(req, res, next) {
   next();
 }
 
-app.use(isAuthenticated);
+//app.use(isAuthenticated);
 
-app.get('/', (req, res, next) => {
-  res.send('auth');
-});
-
-app.get('/img/cags_logo_primary.png', (req, res, next) => {
-  res.send('./client/src/img/cags_logo_primary.png');
-});
-
-app.get('/vote', (req, res, next) => {
-  res.send('vote');
-});
 
 if (process.env.NODE_ENV === 'production') {
 	// Express will serve up production assets
