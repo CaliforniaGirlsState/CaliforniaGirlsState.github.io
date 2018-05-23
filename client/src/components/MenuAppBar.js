@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
@@ -9,7 +9,9 @@ import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
-import { WebListItems } from './tileData';
+import WebListItems from './tileData';
+
+const cagsLogoAlt = require('../img/cags_logo_alt.png');
 
 const styles = {
   root: {
@@ -26,17 +28,15 @@ const styles = {
     width: 250,
   },
   image: {
-    margin: "15px 0",
+    margin: '15px 0',
   },
   emergency: {
-    margin: "20px",
-  }
+    margin: '20px',
+  },
 };
 
-class MenuAppBar extends React.Component {
+class MenuAppBar extends Component {
   state = {
-    auth: true,
-    anchorEl: null,
     left: false,
   };
 
@@ -44,18 +44,6 @@ class MenuAppBar extends React.Component {
     this.setState({
       [side]: open,
     });
-  };
-
-  handleChange = (event, checked) => {
-    this.setState({ auth: checked });
-  };
-
-  handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-
-  handleClose = () => {
-    this.setState({ anchorEl: null });
   };
 
   render() {
@@ -76,10 +64,10 @@ class MenuAppBar extends React.Component {
         <AppBar position="static">
           <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
             <img
-              src={require("../img/cags_logo_alt.png")}
+              src={cagsLogoAlt}
               alt="CAGS LOGO"
               className={classes.image}
-              ></img>
+            />
             <div
               tabIndex={0}
               role="button"
@@ -115,7 +103,7 @@ class MenuAppBar extends React.Component {
 }
 
 MenuAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape.isRequired,
 };
 
 export default withStyles(styles)(MenuAppBar);

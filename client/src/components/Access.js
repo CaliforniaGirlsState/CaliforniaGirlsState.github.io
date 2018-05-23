@@ -1,11 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Access extends Component {
-	render() {
-		return (
-			<div>Access</div>
-		);
-	}
-}
+const Access = () => (
+  <div>Access</div>
+);
 
 export default Access;

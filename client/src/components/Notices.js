@@ -1,11 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Notices extends Component {
-	render() {
-		return (
-			<div>Notices</div>
-		);
-	}
-}
+const Notices = () => (
+  <div>Notices</div>
+);
 
 export default Notices;
