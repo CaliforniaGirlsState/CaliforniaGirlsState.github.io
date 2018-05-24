@@ -12,7 +12,8 @@ import IconButton from '@material-ui/core/IconButton';
 const styles = theme => ({
   root: {
     display: 'flex',
-    flexWrap: 'wrap',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   margin: {
     margin: theme.spacing.unit,
@@ -48,7 +49,7 @@ class Access extends Component {
 
     return (
       <div className={classes.root}>
-        <LockOutline style={{ fontSize: 72 }} />
+        <LockOutline style={{ fontSize: 92 }} />
         <FormControl className={classNames(classes.margin, classes.textField)}>
           <InputLabel htmlFor="adornment-password">Password</InputLabel>
           <Input

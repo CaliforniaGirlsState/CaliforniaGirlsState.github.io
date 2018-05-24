@@ -7,6 +7,11 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 
 const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
   input: {
     margin: theme.spacing.unit,
   },
@@ -19,21 +24,23 @@ const Vote = (props) => {
   const { classes } = props;
 
   return (
-    <div>
+    <div className={classes.root}>
       <Typography variant="display2" gutterBottom>
         Vote Here!
       </Typography>
       <br />
-      <Input
-        placeholder="registration code"
-        className={classes.input}
-        inputProps={{
-          'aria-label': 'registration code',
-        }}
-      />
-      <Button component={Link} to="/NewVote" variant="raised" size="medium" color="primary" className={classes.button}>
-        GO TO BALLOT &gt;
-      </Button>
+      <div>
+        <Input
+          placeholder="registration code"
+          className={classes.input}
+          inputProps={{
+            'aria-label': 'registration code',
+          }}
+        />
+        <Button component={Link} to="/NewVote" variant="raised" size="medium" color="primary" className={classes.button}>
+          GO TO BALLOT &gt;
+        </Button>
+      </div>
     </div>
   );
 };
