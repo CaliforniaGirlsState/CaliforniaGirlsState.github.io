@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import List from 'material-ui/List';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
-import Divider from 'material-ui/Divider';
+import { withStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import WebListItems from './tileData';
 
@@ -84,13 +84,13 @@ class MenuAppBar extends Component {
           </Drawer>
 
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-              <IconButton
-                color="inherit"
-                onClick={this.toggleDrawer('left', true)}
-              >
-                <MenuIcon />
-              </IconButton>
+            <IconButton
+              className={classes.menuButton}
+              color="inherit"
+              onClick={this.toggleDrawer('left', true)}
+              aria-label="Menu"
+            >
+              <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" className={classes.flex}>
               California Girl State
@@ -103,7 +103,7 @@ class MenuAppBar extends Component {
 }
 
 MenuAppBar.propTypes = {
-  classes: PropTypes.shape.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(MenuAppBar);

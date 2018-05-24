@@ -1,18 +1,45 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
-const Vote = () => (
-  <div>
-    Vote
-    <br />
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    Lorem Ipsum has been the industry&rsquo;s standard dummy text ever since the 1500s,
-    when an unknown printer took a galley of type and scrambled it to make a type
-    specimen book. It has survived not only five centuries, but also the leap
-    into electronic typesetting, remaining essentially unchanged. It was popularised
-    in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-    and more recently with desktop publishing software like Aldus PageMaker
-    including versions of Lorem Ipsum.
-  </div>
-);
+const styles = theme => ({
+  input: {
+    margin: theme.spacing.unit,
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+});
 
-export default Vote;
+const Vote = (props) => {
+  const { classes } = props;
+
+  return (
+    <div>
+      <Typography variant="display2" gutterBottom>
+        Vote Here!
+      </Typography>
+      <br />
+      <Input
+        placeholder="registration code"
+        className={classes.input}
+        inputProps={{
+          'aria-label': 'registration code',
+        }}
+      />
+      <Button component={Link} to="/NewVote" variant="raised" size="medium" color="primary" className={classes.button}>
+        GO TO BALLOT &gt;
+      </Button>
+    </div>
+  );
+};
+
+Vote.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Vote);
