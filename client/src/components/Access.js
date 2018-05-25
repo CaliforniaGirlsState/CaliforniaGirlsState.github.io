@@ -8,12 +8,14 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   margin: {
     margin: theme.spacing.unit,
@@ -69,6 +71,14 @@ class Access extends Component {
               </InputAdornment>
             }
           />
+          <Button
+            variant="raised"
+            color="primary"
+            className={classes.withoutLabel}
+            onClick={this.props.toggleLogIn}
+          >
+            Enter
+          </Button>
         </FormControl>
       </div>
     );
@@ -77,6 +87,7 @@ class Access extends Component {
 
 Access.propTypes = {
   classes: PropTypes.object.isRequired,
+  toggleLogIn: PropTypes.func.isRequired,
 };
 
 
