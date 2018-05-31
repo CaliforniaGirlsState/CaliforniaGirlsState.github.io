@@ -9,6 +9,12 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 import WebListItems from './tileData';
 
 const cagsLogoAlt = require('../img/cags_logo_alt.png');
@@ -38,6 +44,7 @@ const styles = {
 class MenuAppBar extends Component {
   state = {
     left: false,
+    anchorEl: null,
   };
 
   toggleDrawer = (side, open) => () => {
@@ -46,8 +53,18 @@ class MenuAppBar extends Component {
     });
   };
 
+  handleMenu = (event) => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
   render() {
-    const { classes } = this.props;
+    const { classes, auth, handleChange } = this.props;
+    const { anchorEl } = this.state;
+    const open = Boolean(anchorEl);
 
     const sideList = (
       <div>
@@ -95,6 +112,43 @@ class MenuAppBar extends Component {
             <Typography variant="title" color="inherit" className={classes.flex}>
               California Girl State
             </Typography>
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Switch checked={auth} onChange={handleChange} aria-label="LoginSwitch" />
+                }
+                label={auth ? 'Logout' : 'Login'}
+              />
+            </FormGroup>
+            {auth && (
+              <div>
+                <IconButton
+                  aria-owns={open ? 'menu-appbar' : null}
+                  aria-haspopup="true"
+                  onClick={this.handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={open}
+                  onClose={this.handleClose}
+                >
+                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                </Menu>
+              </div>
+            )}
           </Toolbar>
         </AppBar>
       </div>
@@ -104,6 +158,8 @@ class MenuAppBar extends Component {
 
 MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
+  auth: PropTypes.bool.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(MenuAppBar);

@@ -20,7 +20,7 @@ const styles = theme => ({
   },
 });
 
-const Vote = (props) => {
+const UserVote = (props) => {
   const { classes } = props;
 
   return (
@@ -45,8 +45,8 @@ const Vote = (props) => {
   );
 };
 
-Vote.propTypes = {
+UserVote.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Vote);
+export default withStyles(styles)(UserVote);
