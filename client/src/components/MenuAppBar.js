@@ -39,6 +39,9 @@ const styles = {
   emergency: {
     margin: '20px',
   },
+  formLabel: {
+    color: 'white',
+  },
 };
 
 class MenuAppBar extends Component {
@@ -114,6 +117,7 @@ class MenuAppBar extends Component {
             </Typography>
             <FormGroup>
               <FormControlLabel
+                classes={{ label: classes.formLabel }}
                 control={
                   <Switch checked={auth} onChange={handleChange} aria-label="LoginSwitch" />
                 }
