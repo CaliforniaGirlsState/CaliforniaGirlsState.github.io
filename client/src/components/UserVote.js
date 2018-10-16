@@ -25,7 +25,7 @@ const UserVote = (props) => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="display2" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Vote Here!
       </Typography>
       <br />
@@ -37,7 +37,7 @@ const UserVote = (props) => {
             'aria-label': 'registration code',
           }}
         />
-        <Button component={Link} to="/NewVote" variant="raised" size="medium" color="primary" className={classes.button}>
+        <Button component={Link} to="/NewVote" variant="contained" size="medium" color="primary" className={classes.button}>
           GO TO BALLOT &gt;
         </Button>
       </div>

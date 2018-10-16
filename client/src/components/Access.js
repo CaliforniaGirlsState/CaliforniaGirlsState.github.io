@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { LockOutline, Visibility, VisibilityOff } from '@material-ui/icons';
+import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -51,7 +51,7 @@ class Access extends Component {
 
     return (
       <div className={classes.root}>
-        <LockOutline style={{ fontSize: 92 }} />
+        <LockOutlined style={{ fontSize: 92 }} />
         <FormControl className={classNames(classes.margin, classes.textField)}>
           <InputLabel htmlFor="adornment-password">Password</InputLabel>
           <Input
@@ -72,7 +72,7 @@ class Access extends Component {
             }
           />
           <Button
-            variant="raised"
+            variant="contained"
             color="primary"
             className={classes.withoutLabel}
             onClick={this.props.toggleLogIn}

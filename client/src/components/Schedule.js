@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 
 const Schedule = () => (
   <div>
-    <Typography variant="display2" gutterBottom>
+    <Typography variant="h3" gutterBottom>
       Schedule
     </Typography>
   </div>

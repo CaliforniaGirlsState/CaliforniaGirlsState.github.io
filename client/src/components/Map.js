@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 
 const Map = () => (
   <div>
-    <Typography variant="display2" gutterBottom>
+    <Typography variant="h3" gutterBottom>
       Map
     </Typography>
   </div>

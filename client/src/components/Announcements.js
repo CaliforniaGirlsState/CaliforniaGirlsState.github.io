@@ -31,7 +31,7 @@ const Announcements = (props) => {
 
   return (
     <div>
-      <Typography variant="display2" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Announcements
       </Typography>
       <Card className={classes.card}>
@@ -39,7 +39,7 @@ const Announcements = (props) => {
           <Typography className={classes.title} color="textSecondary">
             Word of the Day
           </Typography>
-          <Typography variant="headline" component="h2">
+          <Typography variant="h5" component="h2">
             be{bull}nev{bull}o{bull}lent
           </Typography>
           <Typography className={classes.pos} color="textSecondary">

@@ -112,7 +112,7 @@ class MenuAppBar extends Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" className={classes.flex}>
+            <Typography variant="h6" color="inherit" className={classes.flex}>
               California Girl State
             </Typography>
             <FormGroup>
