@@ -81,7 +81,7 @@ const toolbarStyles = theme => ({
 });
 
 let EnhancedTableToolbar = (props) => {
-  const { numSelected, classes } = props;
+  const { numSelected, classes, handleDelete } = props;
 
   return (
     <Toolbar
@@ -105,7 +105,7 @@ let EnhancedTableToolbar = (props) => {
         {numSelected > 0 ? (
           <Tooltip title="Delete">
             <IconButton aria-label="Delete">
-              <DeleteIcon />
+              <DeleteIcon onClick={() => handleDelete()}/>
             </IconButton>
           </Tooltip>
         ) : (
@@ -123,6 +123,7 @@ let EnhancedTableToolbar = (props) => {
 EnhancedTableToolbar.propTypes = {
   classes: PropTypes.object.isRequired,
   numSelected: PropTypes.number.isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
 
 EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
@@ -143,19 +144,19 @@ class EnhancedTable extends React.Component {
     orderBy: 'calories',
     selected: [],
     data: [
-      // createData('Cupcake', 305),
-      // createData('Donut', 452),
-      // createData('Eclair', 262),
-      // createData('Frozen yoghurt', 159),
-      // createData('Gingerbread', 356),
-      // createData('Honeycomb', 408),
-      // createData('Ice cream sandwich', 237),
-      // createData('Jelly Bean', 375),
-      // createData('KitKat', 518),
-      // createData('Lollipop', 392),
-      // createData('Marshmallow', 318),
-      // createData('Nougat', 360),
-      // createData('Oreo', 437),
+      createData('Cupcake', 305),
+      createData('Donut', 452),
+      createData('Eclair', 262),
+      createData('Frozen yoghurt', 159),
+      createData('Gingerbread', 356),
+      createData('Honeycomb', 408),
+      createData('Ice cream sandwich', 237),
+      createData('Jelly Bean', 375),
+      createData('KitKat', 518),
+      createData('Lollipop', 392),
+      createData('Marshmallow', 318),
+      createData('Nougat', 360),
+      createData('Oreo', 437),
     ],
     page: 0,
     rowsPerPage: 5,
@@ -178,6 +179,21 @@ class EnhancedTable extends React.Component {
       return;
     }
     this.setState({ selected: [] });
+  };
+
+
+  // WARNING: Really awful implementation of removing Ballots
+  // TODO: Re-think data schema for state and how to handle
+  // creation and deletion of ballots, probably don't want a
+  // basic integer counter to map to ids, shouldn't clear selected
+  // without checking that all selected have been properly removed, etc...
+  handleDelete = () => {
+    this.setState(state => ({
+      selected: [],
+      data: state.data.filter(dataObj =>
+        state.selected.indexOf(dataObj.id) === -1
+      )
+    }));
   };
 
   handleClick = (event, id) => {
@@ -220,7 +236,7 @@ class EnhancedTable extends React.Component {
 
     return (
       <Paper className={classes.root}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar numSelected={selected.length} handleDelete={this.handleDelete} />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
@@ -258,7 +274,7 @@ class EnhancedTable extends React.Component {
                 })}
               {emptyRows > 0 && (
                 <TableRow>
-                  <TableCell colSpan={3}>No ballots created !</TableCell>
+                  <TableCell colSpan={3}>You've reached the end!</TableCell>
                 </TableRow>
               )}
             </TableBody>
