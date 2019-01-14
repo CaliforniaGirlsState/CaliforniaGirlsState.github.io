@@ -9,6 +9,7 @@ services:
     environment:
       API_HOST: ${API_HOST}
       APP_SERVER_PORT: ${APP_SERVER_PORT}
+      CHOKIDAR_USEPOLLING: ${CHOKIDAR_USEPOLLING}
     ports:
       - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
     volumes:
@@ -22,6 +23,7 @@ services:
       - ${REACT_APP_PORT}
     environment:
       REACT_APP_PORT: ${REACT_APP_PORT}
+      CHOKIDAR_USEPOLLING: ${CHOKIDAR_USEPOLLING}
     ports:
       - ${REACT_APP_PORT}:${REACT_APP_PORT}
     volumes:

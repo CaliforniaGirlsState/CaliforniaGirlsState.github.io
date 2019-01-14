@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -144,7 +145,7 @@ class EnhancedTable extends React.Component {
     orderBy: 'calories',
     selected: [],
     data: [
-      createData('Cupcake', 305),
+      createData('Kabin', 305),
       createData('Donut', 452),
       createData('Eclair', 262),
       createData('Frozen yoghurt', 159),
@@ -196,7 +197,7 @@ class EnhancedTable extends React.Component {
     }));
   };
 
-  handleClick = (event, id) => {
+  handleSelect = (event, id) => {
     const { selected } = this.state;
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
@@ -255,18 +256,27 @@ class EnhancedTable extends React.Component {
                   return (
                     <TableRow
                       hover
-                      onClick={event => this.handleClick(event, n.id)}
                       role="checkbox"
                       aria-checked={isSelected}
                       tabIndex={-1}
                       key={n.id}
                       selected={isSelected}
+                      // onClick={event => this.handleClick(event, n.id)}
                     >
                       <TableCell padding="checkbox">
-                        <Checkbox checked={isSelected} />
+                        <Checkbox 
+                          checked={isSelected} 
+                          onClick={event => this.handleSelect(event, n.id)}
+                        />
                       </TableCell>
-                      <TableCell component="th" scope="row" padding="none">
-                        {n.name}
+                      <TableCell 
+                        component="th"
+                        scope="row"
+                        padding="none"
+                      >
+                        <Link to={`/Vote/${n.id}`}>
+                          {n.name}
+                        </Link>
                       </TableCell>
                       <TableCell numeric>{n.calories}</TableCell>
                     </TableRow>
@@ -274,7 +284,7 @@ class EnhancedTable extends React.Component {
                 })}
               {emptyRows > 0 && (
                 <TableRow>
-                  <TableCell colSpan={3}>You've reached the end!</TableCell>
+                  <TableCell colSpan={3}>You've reached the end</TableCell>
                 </TableRow>
               )}
             </TableBody>
