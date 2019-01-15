@@ -8,7 +8,7 @@ import Schedule from './Schedule';
 import Map from './Map';
 import Manual from './Manual';
 import UserVote from './UserVote';
-// import AdminVote from './AdminVote';
+import AdminVote from './AdminVote';
 import EnhancedTable from './EnhancedTable';
 
 /* TODO: Determine somewhat secure way to determine
@@ -49,7 +49,7 @@ class App extends Component {
             <Route path="/Schedule" component={Schedule} />
             <Route path="/Map" component={Map} />
             <Route path="/Manual" component={Manual} />
-            <Route path="/Vote" component={this.state.auth ? EnhancedTable : UserVote} />
+            <Route path="/Vote" component={this.state.auth ? AdminVote : UserVote} />
           </div>
         </div>
       </BrowserRouter>

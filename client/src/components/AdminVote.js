@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -8,6 +9,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/DeleteForeverOutlined';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -71,6 +74,12 @@ class AdminVote extends React.Component {
   render() {
     return (
       <div className={this.classes.root}>
+        <h3>
+          Add new ballot
+        </h3>
+        <Fab color="primary" aria-label="Add" onClick={() => this.createData("Untitled")}>
+          <AddIcon />
+        </Fab>
         <Table className={this.classes.table}>
           <TableHead>
             <TableRow>
@@ -82,7 +91,7 @@ class AdminVote extends React.Component {
             {
               this.state.rows.length ?
                 this.state.rows.map(row => (
-                  <TableRow key={row.id}>
+                  <TableRow key={row.id} hover component={Link} to={`/Vote/${row.id}`}>
                     <CustomTableCell component="th" scope="row">
                       <IconButton onClick={() => this.deleteData({ id: row.id, name: row.name })}>
                         <DeleteIcon />
