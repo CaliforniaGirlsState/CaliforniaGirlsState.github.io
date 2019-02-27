@@ -1,26 +1,16 @@
 const express = require('express');
 const path = require('path');
-
 const app = express();
 
-// Middleware below!
-function isAuthenticated(req, res, next) {
-  // Do any checks you want to in here
+// MongoDB stuff
+require('dotenv').config()
+const MongoClient = require('mongodb').MongoClient
+const bodyParser = require('body-parser')
 
-  // CHECK THE USER STORED IN SESSION FOR A CUSTOM VARIABLE
-  // you can do this however you want with whatever variables you set up
-  // if (req.user.authenticated) {
-  //   return next();
-  // }
-  //
-  // // IF A USER ISN'T LOGGED IN, THEN REDIRECT THEM SOMEWHERE
-  // res.redirect('/');
-  console.log(`${req.url}`);
-  next();
-}
-
-app.use(isAuthenticated);
-
+var db
+app.use(bodyParser.urlencoded({extended: true}))
+// app.use(express.static('public'))
+app.use(bodyParser.json())
 
 if (process.env.NODE_ENV === 'production') {
   // Express will serve up production assets
@@ -34,7 +24,21 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
+app.get('/test', (req, res) => {
+  let data = { first: 'test' };
+  res.json(data);
+  console.log('server: ', data)
 });
+
+MongoClient.connect(`mongodb://${process.env.MDB_USER}:${process.env.MDB_PW}@ds117701.mlab.com:17701/test-some-quotes`, (err, client) => {
+  // ... start the server
+
+  if (err) return console.log(err)
+
+  db = client.db('test-some-quotes')
+
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
+  });
+})

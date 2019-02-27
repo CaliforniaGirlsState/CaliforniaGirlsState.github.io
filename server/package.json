@@ -12,7 +12,11 @@
   "author": "Kabin Nam",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "dotenv": "^6.2.0",
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "mongodb": "^3.0.10"
   },
   "devDependencies": {
     "nodemon": "^1.18.8"

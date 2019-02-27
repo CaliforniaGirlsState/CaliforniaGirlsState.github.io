@@ -10,6 +10,8 @@ services:
       API_HOST: ${API_HOST}
       APP_SERVER_PORT: ${APP_SERVER_PORT}
       CHOKIDAR_USEPOLLING: ${CHOKIDAR_USEPOLLING}
+      MDB_USER: ${MDB_USER}
+      MDB_PW: ${MDB_PW}
     ports:
       - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
     volumes:
