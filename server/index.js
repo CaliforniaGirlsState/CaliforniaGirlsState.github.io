@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.get('/test', (req, res) => {
-  let data = { first: 'test' };
+  let data = { name: 'test' };
   res.json(data);
   console.log('server: ', data)
 });

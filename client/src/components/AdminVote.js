@@ -42,23 +42,36 @@ const styles = theme => ({
 });
 
 class AdminVote extends React.Component {
-  state = {
-    count: 5,
-    rows: [
-      { id: 0, name: 'President' },
-      { id: 1, name: 'Vice President' },
-      { id: 2, name: 'Department of State' },
-      { id: 3, name: 'Department of Defense' },
-      { id: 4, name: 'Department of the Treasury' },
-    ],
+  constructor(props) {
+    super(props);
+
+    this.classes = this.props.classes;
+    
+    this.state = {
+      count: 5,
+      rows: [
+        { id: 0, name: 'President' },
+        { id: 1, name: 'Vice President' },
+        { id: 2, name: 'Department of State' },
+        { id: 3, name: 'Department of Defense' },
+        { id: 4, name: 'Department of the Treasury' },
+      ],
+    };
+
+    this.createData = this.createData.bind(this);
   }
 
-  classes = this.props.classes;
+  async createData() {
+    let newData;
+    await fetch('/test')
+          .then(res => res.text())
+          .then(json => { newData = JSON.parse(json) });
 
-  createData(name) {
+    
     this.setState({
       count: this.state.count + 1,
-      rows: [...this.state.rows, { id: this.state.count, name }],
+      // rows: [...this.state.rows, { id: this.state.count, name }],
+      rows: [...this.state.rows, { id: this.state.count, ...newData }],
     });
   }
 
@@ -77,7 +90,7 @@ class AdminVote extends React.Component {
         <h3>
           Add new ballot
         </h3>
-        <Fab color="primary" aria-label="Add" onClick={() => this.createData("Untitled")}>
+        <Fab color="primary" aria-label="Add" onClick={this.createData}>
           <AddIcon />
         </Fab>
         <Table className={this.classes.table}>

@@ -9,10 +9,6 @@ import Map from './Map';
 import Manual from './Manual';
 import UserVote from './UserVote';
 import AdminVote from './AdminVote';
-import EnhancedTable from './EnhancedTable';
-
-/* TODO: Determine somewhat secure way to determine
- * if code was entered correctly */
 
 class App extends Component {
   constructor(props) {
