@@ -27,10 +27,9 @@ if (process.env.NODE_ENV === 'production') {
 app.get('/test', (req, res) => {
   let data = { name: 'test' };
   res.json(data);
-  console.log('server: ', data)
 });
 
-MongoClient.connect(`mongodb://${process.env.MDB_USER}:${process.env.MDB_PW}@ds117701.mlab.com:17701/test-some-quotes`, (err, client) => {
+MongoClient.connect(`mongodb://${process.env.MDB_USER}:${process.env.MDB_PW}@ds117701.mlab.com:17701/test-some-quotes`, { useNewUrlParser: true }, (err, client) => {
   // ... start the server
 
   if (err) return console.log(err)

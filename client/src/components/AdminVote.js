@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -64,13 +63,12 @@ class AdminVote extends React.Component {
   async createData() {
     let newData;
     await fetch('/test')
-          .then(res => res.text())
-          .then(json => { newData = JSON.parse(json) });
+          .then(res => res.json())
+          .then(json => { newData = json });
 
     
     this.setState({
       count: this.state.count + 1,
-      // rows: [...this.state.rows, { id: this.state.count, name }],
       rows: [...this.state.rows, { id: this.state.count, ...newData }],
     });
   }
@@ -79,7 +77,7 @@ class AdminVote extends React.Component {
     const { count, rows } = this.state;
 
     this.setState({
-      count: count - 1,
+      count: count - 1, // @TODO: This will cause bugs
       rows: rows.filter(el => el.id !== target.id || el.name !== target.name),
     });
   }
@@ -97,21 +95,21 @@ class AdminVote extends React.Component {
           <TableHead>
             <TableRow>
               <CustomTableCell>Ballot Name</CustomTableCell>
-              <CustomTableCell numeric>Creation Date</CustomTableCell>
+              <CustomTableCell align="right">Creation Date</CustomTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {
               this.state.rows.length ?
                 this.state.rows.map(row => (
-                  <TableRow key={row.id} hover component={Link} to={`/Vote/${row.id}`}>
+                  <TableRow key={row.id} hover to={`/Vote/${row.id}`}>
                     <CustomTableCell component="th" scope="row">
                       <IconButton onClick={() => this.deleteData({ id: row.id, name: row.name })}>
                         <DeleteIcon />
                       </IconButton>
                       {row.name}
                     </CustomTableCell>
-                    <CustomTableCell numeric>
+                    <CustomTableCell align="right">
                       {(new Date()).toDateString()}
                     </CustomTableCell>
                   </TableRow>
